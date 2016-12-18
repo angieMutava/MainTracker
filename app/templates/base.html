@@ -1,0 +1,88 @@
+{% extends "bootstrap/base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+<!--
+    the title block
+-->
+{% block title %} Mantenimiento {% endblock %}
+
+
+<!--
+    the title block
+-->
+{% block styles %}
+{{ super() }}
+<!--My Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="static/css/auth.css">
+<!-- External Stylesheets -->
+    <!-- Bootstrap cdn -->
+    <link rel="stylesheet"
+    href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+{% endblock %}
+
+<!--
+    the navigation bar block
+-->
+{% block navbar %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ url_for('main.home_page') }}">
+                <!--<img src="static/images/images.jpg">-->
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        {% if current_user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                       <!-- <a href="{{ url_for('auth.sign_out') }}">
+                            Sign Out
+                        </a>-->
+                    </li>
+                    <li>
+                        <span class="waves-effect waves-light"><p>{{ current_user.username }}</p></span>
+                    </li>
+        {% endif %}
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+<!--
+    beginning of the body content...
+-->
+{% block content %}
+    <!--<div class="saulu-background">-->
+        <div class="container-fluid" id="body">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning col-md-4" style="margin-left: 370px; padding-left: 100px; margin-top:0; height: 15px;">
+                <strong>{{ message }}</strong>
+            </div>
+        {% endfor %}
+        {% block page_content %}
+        {% endblock %}
+        </div>
+    <!--</div>-->
+
+
+    <!--
+     beginning of the scripts block...
+    -->
+    {% block scripts %}
+
+    <!--External scripts-->
+        <!--Bootstrap scripts-->
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- JQuery -->
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+{% endblock %}
+{%endblock%}
