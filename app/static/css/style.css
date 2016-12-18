@@ -1,0 +1,60 @@
+@import url("http://fonts.googleapis.com/css?family=Lily+Script+One");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
+body {
+  background: #48BCE2;
+}
+
+.login-header {
+  margin: 10px 20% 0px;
+  padding: 20px;
+  background: #2094ba;
+}
+.login-header h1 {
+  cursor: default;
+  color: #fff;
+  font-size: 3em;
+  opacity: 1;
+  font-family: 'Lily Script One', cursive;
+}
+.login-header p {
+  font-family: 'Open Sans Condensed', sans-serif;
+  cursor: pointer;
+  position: absolute;
+  right: 20%;
+  top: 10px;
+  font-size: 1.5em;
+  color: #fff;
+  padding: 10px;
+  background: #006c92;
+}
+
+.login-form {
+  background: #0c80a6;
+  margin: 0 20%;
+  padding: 20px;
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  height: 2em;
+  border: none;
+  font-size: 1.5em;
+  outline: none;
+  box-sizing: border-box;
+  padding-left: 10px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.login-form input[type="submit"] {
+  height: 2em;
+  width: 20%;
+  background: #A0FF77;
+  border: none;
+  color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.login-form a {
+  color: #cdcdcd;
+  cursor: pointer;
+}
