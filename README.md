@@ -11,3 +11,16 @@ This is a web application that allows reporting of maintainance and repair reque
 6. User get a notification once a repair/maintanance has been resolved
 7. As admin, I should be able to add names and contacts (phone number) for the people doing maintenance.
 ``` 
+
+##Requirements
+######language
+python 2.7 or python 3.0 should be installed in your machine.
+######Dependencies
+To install the required dependencies for the application to run on your machine run the below command in the virtual environment.
+```
+pip install -r requirements.txt on your machine.
+```
+###Initialie the db with the command.
+```
+python manage.py db init
+```
