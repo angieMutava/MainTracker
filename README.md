@@ -20,7 +20,15 @@ To install the required dependencies for the application to run on your machine 
 ```
 pip install -r requirements.txt on your machine.
 ```
-###Initialie the db with the command.
+###Initialize the db with the command.
 ```
 python manage.py db init
+```
+###Upgrading the database.
+```
+python manage.py db upgrade
+```
+###Run the server
+```
+python manage.py runserver
 ```
