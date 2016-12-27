@@ -13,6 +13,7 @@ login_manager = LoginManager()
 mail = Mail()
 bootstrap = Bootstrap()
 #can be set to basic ,None or strong
+#it keeps track of the browser the user is using
 login_manager.session_protection = 'None'
 #The login_view
 #attribute sets the endpoint for the login page. Recall that because the login route is inside
@@ -23,6 +24,7 @@ def create_app(config_name):
 	app = Flask(__name__)
 	app.config.from_object(config[config_name])
 	config[config_name].init_app(app)
+	app.config['SECRET_KEY'] = 'hard to guess string'
 
 	db.init_app(app)
 	login_manager.init_app(app)
@@ -31,5 +33,8 @@ def create_app(config_name):
 
 	from auth import auth as auth_blueprint
 	app.register_blueprint(auth_blueprint)
+
+	from main import main as main_blueprint
+	app.register_blueprint(main_blueprint)
 
 	return app

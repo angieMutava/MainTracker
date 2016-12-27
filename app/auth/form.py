@@ -9,7 +9,7 @@ class SignInForm(Form):
 		Email()])
 	password = PasswordField('Password', validators=[Required()])
 	remember_me = BooleanField('Keep me logged in')
-	submit = SubmitField('Sin In')
+	submit = SubmitField('Sign In')
 
 class SignUpForm(Form):
 

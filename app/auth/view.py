@@ -13,7 +13,7 @@ def signIn():
 		user = User.query.filter_by(username=user_form.username.data).first()
 		if user is not None and user.verify_password(user_form.password.data):
 			login_user(user, user_form.remember_me.data)
-			return redirect(url_for(''))
+			return redirect(url_for('main.home_page'))
 		flash("invalid username or password")
 	return render_template('auth/login.html', user_form=user_form)
 
@@ -30,10 +30,14 @@ def signUp():
 		db.session.add(user)
 		db.session.commit()
 		flash("user registered successfully")
-		return redirect(url_for('auth.login'))
+		return redirect(url_for('auth.signIn'))
 	return render_template('auth/signup.html', user_form=user_form)
 	
 @auth.route('/sign_out')
 def sign_out():
 	logout_user()
-	return redirect(url_for('auth.login'))	
+	return redirect(url_for('auth.login'))
+
+@auth.route('/reset', methods=['GET', 'POST'])
+def reset_password():
+	return render_template('forgot_password.html')		
