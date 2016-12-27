@@ -32,3 +32,6 @@ python manage.py db upgrade
 ```
 python manage.py runserver
 ```
+###Screenshots
+######home page
+![alt](https://github.com/angieMutava/MainTracker/blob/master/screenshots/home.PNG "home")
