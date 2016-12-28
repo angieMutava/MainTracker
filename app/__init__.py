@@ -1,11 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+import os
 from config import config
 from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 
-
+basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 
 db = SQLAlchemy()
@@ -25,7 +26,6 @@ def create_app(config_name):
 	app.config.from_object(config[config_name])
 	config[config_name].init_app(app)
 	app.config['SECRET_KEY'] = 'hard to guess string'
-
 	db.init_app(app)
 	login_manager.init_app(app)
 	mail.init_app(app)

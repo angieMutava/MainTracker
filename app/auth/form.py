@@ -5,16 +5,15 @@ from ..model import User
 from wtforms import ValidationError
 
 class SignInForm(Form):
-	email = StringField('Email', validators=[Required(), Length(1, 64),
-		Email()])
+	username = StringField('Username', validators=[Required(), Length(1, 64)])
 	password = PasswordField('Password', validators=[Required()])
 	remember_me = BooleanField('Keep me logged in')
 	submit = SubmitField('Sign In')
 
 class SignUpForm(Form):
 
-	first_name = StringField('First name', validators=[Required(), Length(1, 20)])
-	second_name = StringField('Second name', validators=[Required(), Length(1, 20)])
+	first_name = StringField('FirstName', validators=[Required(), Length(1, 20)])
+	last_name = StringField('LastName', validators=[Required(), Length(1, 20)])
 	email = StringField('Email', validators=[Required(), Length(1, 64), Email()])
 	phone_number = StringField('PhoneNumber', validators=[Required(), Length(1, 64)])
 	username = StringField('Username', validators=[Required(), Length(1, 64), 
@@ -29,4 +28,9 @@ class SignUpForm(Form):
 
 	def validate_username(self, field):
 		if User.query.filter_by(username=field.data).first():
-			raise ValidationError('Username already in use.')	
+			raise ValidationError('Username already in use.')
+
+
+class ResetPassword(Form):
+	email = StringField('Email', validators=[Required(), Length(1, 64), Email()])
+	submit = SubmitField('Reset Password')

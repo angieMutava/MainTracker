@@ -6,7 +6,6 @@ ADMINS = ['mantenimiento.trackapp@gmail.com']
 
 class Config:
 	WTF_CSRF_ENABLED = True
-	
 	SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 	SQLALCHEMY_TRACK_MODIFICATIONS = True
 	SECRET_KEY = 'I choose to love you.'
@@ -24,7 +23,7 @@ class DevelopmentConfig:
 	DEBUG = True
 	DEVELOPMENT = True
 	SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-       'sqlite:///' + os.path.join(basedir, 'tracker.sqlite')
+'sqlite:///' + os.path.join(basedir, 'tracker.sqlite')
 
 	@staticmethod
 	def init_app(app):
@@ -38,7 +37,19 @@ class ProductionConfig:
 	def init_app(app):
 		pass
 
+class TestingConfig(Config):
+	TESTING = True
+	SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+       'sqlite:///' + os.path.join(basedir, 'trackertest.sqlite')
+	SQLALCHEMY_COMMIT_ON_TEARDOWN = False
+
+	@staticmethod
+	def init_app(app):
+		pass
+
 config = {
 	'development': DevelopmentConfig,
 	'production': ProductionConfig,
-	'default': DevelopmentConfig}
+	'testing': TestingConfig,
+	'default': DevelopmentConfig
+	}
