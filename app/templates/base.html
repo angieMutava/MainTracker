@@ -1,88 +1,162 @@
-{% extends "bootstrap/base.html" %}
-
+<!-- base.html template -->
 {% import "bootstrap/wtf.html" as wtf %}
-<!--
-    the title block
--->
-{% block title %} Mantenimiento {% endblock %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<!--
-    the title block
--->
-{% block styles %}
-{{ super() }}
-<!--My Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="static/css/auth.css">
-<!-- External Stylesheets -->
-    <!-- Bootstrap cdn -->
-    <link rel="stylesheet"
-    href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-{% endblock %}
 
-<!--
-    the navigation bar block
--->
-{% block navbar %}
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="{{ url_for('main.home_page') }}">
-                <!--<img src="static/images/images.jpg">-->
-            </a>
+    <link rel="stylesheet" href="static/css/demo.css">
+    <link rel="stylesheet" href="static/css/header-second-bar.css">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+</head>
+
+ 
+
+<header class="header-two-bars">
+
+    <div class="header-first-bar">
+
+        <div class="header-limiter">
+
+            <h1><a href="#"><span>Mantenimiento</span></a></h1>
+            {% if current_user.is_authenticated %}
+             <a href="" class="logout-button">{{ current_user.username }}</a>
+             {% endif %}
+            <a href="{{ url_for('auth.sign_out') }}" class="logout-button">Logout</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-        {% if current_user.is_authenticated %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                       <!-- <a href="{{ url_for('auth.sign_out') }}">
-                            Sign Out
-                        </a>-->
-                    </li>
-                    <li>
-                        <span class="waves-effect waves-light"><p>{{ current_user.username }}</p></span>
-                    </li>
-        {% endif %}
-        </div>
+
     </div>
-</nav>
-{% endblock %}
 
-<!--
-    beginning of the body content...
--->
-{% block content %}
-    <!--<div class="saulu-background">-->
-        <div class="container-fluid" id="body">
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-warning col-md-4" style="margin-left: 370px; padding-left: 100px; margin-top:0; height: 15px;">
-                <strong>{{ message }}</strong>
-            </div>
-{% endfor %}
-{% block page_content %}
-{% endblock %}
+    <div class="header-second-bar">
+        <div class="header-limiter">
+            <h2><a href="#">Maintanance/Repair Request</a></h2>
+
+            <nav>
+                <a href="{{ url_for('main.maintanance') }}" class = "btn btn-primary">Report Maintanance</a>
+                <a href="{{ url_for('main.repair') }}" class = "btn btn-primary">Report Repair</a>
+            </nav>
+        </div>
+
+    </div>
+
+</header>
+
+<!-- The content of your page would go here. -->
+{% block body %} 
+<div class="container">
+  <div class="row">
+<div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Requested maintanance
+          </h4>
+      </div>
+<table  class="table table-striped table-bordered table-condensed table-hover" width="647">
+  
+   
+   <thead>
+      <tr>
+         <th>Item Name</th>
+         <th>Item Issue</th>
+         <th>Item Type</th>
+         <th>Date of Request</th>
+      </tr>
+   </thead>
+   
+   <tbody>
+      <tr>
+         <td>Tanmay</td>
+         <td>Bangalore</td>
+         <td>560001</td>
+         <td>560001</td>
+      </tr>
+      
+      <tr>
+         <td>Sachin</td>
+         <td>Mumbai</td>
+         <td>400003</td>
+         <td>560001</td>
+      </tr>
+      
+      <tr>
+         <td>Uma</td>
+         <td>Pune</td>
+         <td>411027</td>
+         <td>560001</td>
+      </tr>
+   </tbody>
+</table>
 </div>
-    <!--</div>-->
+</div>
+</div>
 
 
-    <!--
-     beginning of the scripts block...
-    -->
-    {% block scripts %}
+<div class="container">
+<div class="row">
+<div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Requested repair
+          </h4>
+        </div> 
+<table class="table table-striped table-bordered table-condensed table-hover" >
+   
+   
+   <thead>
+      <tr>
+         <th>Item Name</th>
+         <th>Item Issue</th>
+         <th>Item Type</th>
+         <th>Date of Request</th>
+      </tr>
+   </thead>
+   
+   <tbody>
+      <tr>
+         <td>Tanmay</td>
+         <td>Bangalore</td>
+         <td>560001</td>
+         <td>560001</td>
+      </tr>
+      
+      <tr>
+         <td>Sachin</td>
+         <td>Mumbai</td>
+         <td>400003</td>
+         <td>560001</td>
+      </tr>
+      
+      <tr>
+         <td>Uma</td>
+         <td>Pune</td>
+         <td>411027</td>
+         <td>560001</td>
+      </tr>
+   </tbody>
+    
+</table>
 
-    <!--External scripts-->
-        <!--Bootstrap scripts-->
-             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</div>
+</div>
+</div>
 
-        <!-- JQuery -->
-            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+
 
 {% endblock %}
-{%endblock%}
+<!-- Demo ads. Please ignore and remove. -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.tutorialzine.com/misc/enhance/v3.js" async></script>
+
+
+
+</html>

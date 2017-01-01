@@ -21,8 +21,8 @@ def signIn():
 def signUp():
 	user_form = SignUpForm()
 	if user_form.validate_on_submit():
-		user = User(firstname=user_form.first_name.data,
-			lastname=user_form.last_name.data,
+		user = User(first_name=user_form.first_name.data,
+			last_name=user_form.last_name.data,
 			email=user_form.email.data,
 			phone_number=user_form.phone_number.data,
 			username=user_form.username.data,
@@ -63,14 +63,6 @@ def confirm(token):
 	return redirect(url_for('main.home_page'))
 	
 
-@auth.before_app_request
-def before_request():
-	if current_user.is_authenticated() \
-			and not current_user.confirmed \
-			and request.endpoint[:5] != 'auth.':
-		return redirect(url_for('auth.unconfirmed'))
-
-
 @auth.route('/unconfirmed')
 def unconfirmed():
 	if current_user.is_anonymous() or current_user.confirmed:
@@ -86,3 +78,9 @@ def resend_confirmation():
 		'Confirm Your Account', user, token=token)
 	flash('A new confirmation email has been sent to you by email.')
 	return redirect(url_for('main.home_page'))								
+
+
+@auth.before_app_request
+def before_request():
+	pass
+	

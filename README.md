@@ -14,9 +14,7 @@ This is a web application that allows reporting of maintainance and repair reque
 7. As admin, I should be able to add names and contacts (phone number) for the people doing maintenance.
 ``` 
 ##Usage
-Beginner in python and flask respectively? Ha! Lets walk together.
-<br/>
-Learning flask as a beginner in web is not easy, especially when you have very many tutorials and have no idea where to start. I have ideally narrowed down to miguel's book and tutorials online.<br/>
+Beginner in python and flask respectively? Ha! Lets walk together.Learning flask as a beginner in web is not easy, especially when you have very many tutorials and have no idea where to start. I have ideally narrowed down to miguel's book and tutorials online.<br/>
 ######check them here
 ```
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world

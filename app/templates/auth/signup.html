@@ -26,6 +26,7 @@
     <!--<h2 class="title">RESPONSIVE LOGIN TEMPLATE</h2>-->
     <form class="form-signin" role="form" method ="POST" action="{{ url_for('auth.signUp') }}">
       <!--<h4 class="section-heading"><span>SIGN UP</span></h4>-->
+      {{ user_form.hidden_tag() }}
       <div class="row">
         <div class="column">
           {{ wtf.form_field(user_form.first_name) }}

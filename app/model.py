@@ -1,5 +1,6 @@
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask.ext.login import UserMixin
+from datetime import datetime
 from flask import current_app
 from . import login_manager
 from . import db, login_manager
@@ -14,6 +15,8 @@ class User(UserMixin, db.Model):
 	phone_number = db.Column(db.String(64))
 	username = db.Column(db.String(64), unique=True, index=True)
 	password_hash = db.Column(db.String(128))
+	#repair = db.relationship('Repair', backref='raised_by', lazy='immediate')
+	#main = db.relationship('Maintanance', backref='raised_by', lazy='immediate')
 
 	@login_manager.user_loader
 	def load_user(user_id):
@@ -44,5 +47,26 @@ class User(UserMixin, db.Model):
 			return False
 		self.confirmed = True
 		db.session.add(self)
-		return True	
+		return True
+
+class Maintanance(db.Model):
+	__tablename__ = 'mains'
+	id = db.Column(db.Integer, primary_key=True)
+	item_name = db.Column(db.String(64))
+	item_issue = db.Column(db.Text(64))
+	item_type = db.Column(db.String(64))
+	urgency = db.Column(db.String(64))
+	date_of_request = db.column(db.String(64))
+	raised_by = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+
+class Repair(db.Model):
+	__tablename__ = 'repairs'
+	id = db.Column(db.Integer, primary_key=True)
+	item_name = db.Column(db.String(64))
+	item_issue = db.Column(db.Text(64))
+	item_type = db.Column(db.String(64))
+	urgency = db.Column(db.String(64))
+	date_of_request = db.column(db.String(64))
+	raised_by = db.Column(db.Integer, db.ForeignKey('users.id'))
 			
