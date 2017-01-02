@@ -52,7 +52,7 @@ Open databases and navigate to the root folder and open tracker.sqlite
 
 
 
-```
+
 
 ##Requirements
 ######language
