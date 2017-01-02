@@ -54,3 +54,5 @@ python manage.py runserver
 ![alt](https://github.com/angieMutava/MainTracker/blob/master/screenshots/home.PNG "home")
 ######index page
 ![alt](https://github.com/angieMutava/MainTracker/blob/master/screenshots/index.PNG "index")
+######admin page
+![alt](https://github.com/angieMutava/MainTracker/blob/master/screenshots/admin.PNG "admin")
