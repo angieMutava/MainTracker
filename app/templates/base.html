@@ -38,12 +38,13 @@
 
     <div class="header-second-bar">
         <div class="header-limiter">
-            <h2><a href="#">Maintanance/Repair Request</a></h2>
-
+            <h2><a href="#"></a></h2>
+          {% block navbar %}
             <nav>
                 <a href="{{ url_for('main.maintanance') }}" class = "btn btn-primary">Report Maintanance</a>
                 <a href="{{ url_for('main.repair') }}" class = "btn btn-primary">Report Repair</a>
             </nav>
+            {% endblock %}
         </div>
 
     </div>
@@ -51,7 +52,7 @@
 </header>
 
 <!-- The content of your page would go here. -->
-{% block body %} 
+{% block page_content %} 
 <div class="container">
   <div class="row">
 <div class="panel panel-default">
@@ -65,35 +66,31 @@
    
    <thead>
       <tr>
+        
          <th>Item Name</th>
          <th>Item Issue</th>
          <th>Item Type</th>
-         <th>Date of Request</th>
+         <th>Urgency</th>
       </tr>
    </thead>
-   
+   {% for maintanances in maintanances%}
    <tbody>
-      <tr>
-         <td>Tanmay</td>
-         <td>Bangalore</td>
-         <td>560001</td>
-         <td>560001</td>
-      </tr>
       
       <tr>
-         <td>Sachin</td>
-         <td>Mumbai</td>
-         <td>400003</td>
-         <td>560001</td>
+       
+         <td>{{ maintanances.item_name }}</td>
+         <td>{{ maintanances.item_issue }}</td>
+        
+         <td>{{ maintanances.item_type }}</td>
+         <td>{{ maintanances.urgency }}</td>
+         
       </tr>
       
-      <tr>
-         <td>Uma</td>
-         <td>Pune</td>
-         <td>411027</td>
-         <td>560001</td>
-      </tr>
+      
+      
+      
    </tbody>
+   {% endfor %}
 </table>
 </div>
 </div>
@@ -116,32 +113,20 @@
          <th>Item Name</th>
          <th>Item Issue</th>
          <th>Item Type</th>
-         <th>Date of Request</th>
+         <th>Urgency</th>
       </tr>
    </thead>
-   
+   {% for repairs in repairs %}
    <tbody>
       <tr>
-         <td>Tanmay</td>
-         <td>Bangalore</td>
-         <td>560001</td>
-         <td>560001</td>
+          <td>{{ repairs.item_name }}</td>
+         <td>{{ repairs.item_issue }}</td>
+        
+         <td>{{ repairs.item_type }}</td>
+         <td>{{ repairs.urgency }}</td>
       </tr>
-      
-      <tr>
-         <td>Sachin</td>
-         <td>Mumbai</td>
-         <td>400003</td>
-         <td>560001</td>
-      </tr>
-      
-      <tr>
-         <td>Uma</td>
-         <td>Pune</td>
-         <td>411027</td>
-         <td>560001</td>
-      </tr>
-   </tbody>
+  </tbody>
+  {% endfor %}
     
 </table>
 

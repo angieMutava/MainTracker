@@ -49,24 +49,22 @@ class User(UserMixin, db.Model):
 		db.session.add(self)
 		return True
 
+
 class Maintanance(db.Model):
 	__tablename__ = 'mains'
 	id = db.Column(db.Integer, primary_key=True)
 	item_name = db.Column(db.String(64))
-	item_issue = db.Column(db.Text(64))
+	item_issue = db.Column(db.String(64))
 	item_type = db.Column(db.String(64))
 	urgency = db.Column(db.String(64))
-	date_of_request = db.column(db.String(64))
-	raised_by = db.Column(db.Integer, db.ForeignKey('users.id'))
+	raised_by = db.Column(db.String(64))
 
 
 class Repair(db.Model):
 	__tablename__ = 'repairs'
 	id = db.Column(db.Integer, primary_key=True)
 	item_name = db.Column(db.String(64))
-	item_issue = db.Column(db.Text(64))
+	item_issue = db.Column(db.String(64))
 	item_type = db.Column(db.String(64))
 	urgency = db.Column(db.String(64))
-	date_of_request = db.column(db.String(64))
-	raised_by = db.Column(db.Integer, db.ForeignKey('users.id'))
-			
+	raised_by = db.Column(db.String(64))

@@ -1,42 +1,51 @@
 {% extends 'base.html' %}
 
 {% import 'bootstrap/wtf.html' as wtf %}
+{% block navbar %}
+<nav>
+<a href="#" class = "btn btn-primary"> Repair</a>
+</nav>
+{% endblock %}
 
-{% block body %}
-	<div class="container">
-    <div class="row"
-        <form role="form">
+{% block page_content %}
+    <div class="container">
+    <div class="row">
+        
+        <form role="form" method="POST" action="{{ url_for('main.repair') }}">
+            {{ repair_form.hidden_tag() }}
             <div class="col-lg-6">
+                 <div class="form-group">
+                    
+                    <div class="input-group">
+                        {{ wtf.form_field(repair_form.item_name) }}
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    
+                    <div class="input-group">
+                        {{ wtf.form_field(repair_form.item_issue) }}
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    
+                    <div class="input-group">
+                        {{ wtf.form_field(repair_form.item_type) }}
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
                 
+
                 <div class="form-group">
-                    <label for="InputName">Enter Name</label>
+                    
                     <div class="input-group">
-                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
+                        {{ wtf.form_field(repair_form.urgency) }}
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="InputEmail">Enter Email</label>
-                    <div class="input-group">
-                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="InputEmail">Confirm Email</label>
-                    <div class="input-group">
-                        <input type="email" class="form-control" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="InputMessage">Enter Message</label>
-                    <div class="input-group">
-                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                    </div>
-                </div>
-                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary pull-right">
+                {{ wtf.form_field(repair_form.submit ) }}
+               
             </div>
         </form>
    

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block navbar %}
+<nav>
+<a href="{{ url_for('main.admin_mains') }}" class = "btn btn-primary">View All Maintanance Requests</a>
+<a href="{{ url_for('main.admin_repairs') }}" class = "btn btn-primary">View All Repair Requests</a>
+<a href="{{ url_for('main.admin_users') }}" class = "btn btn-primary">View All Users</a>
+
+</nav>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+  <div class="row">
+<div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Repairs
+          </h4>
+      </div>
+<table  class="table table-striped table-bordered table-condensed table-hover" width="647">
+  
+   
+   <thead>
+      <tr>
+        
+         <th>Item Name</th>
+         <th>Item Issue</th>
+         <th>Item Type</th>
+         <th>Urgency</th>
+         <th>Raised By</th>
+         <th></th>
+         
+      </tr>
+   </thead>
+   {% for repairs in repairs%}
+   <tbody>
+      
+      <tr>
+       
+         <td>{{ repairs.item_name }}</td>
+         <td>{{ repairs.item_issue }}</td>
+        
+         <td>{{ repairs.item_type }}</td>
+         <td>{{ repairs.urgency }}</td>
+         <td>{{ repairs.raised_by }}</td>
+         <td><a href="#" class = "btn btn-primary"> Approve/Reject</a></td>
+         
+
+         
+      </tr>
+ </tbody>
+   {% endfor %}
+</table>
+</div>
+</div>
+</div>
+
+{% endblock %}
