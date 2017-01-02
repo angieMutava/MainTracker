@@ -28,7 +28,7 @@ https://flaskbook.com
 In the links provided you will be guided on how to stucture your application. From the structure you will need to do some configuration to flask for all the dependent softwares you have installed. For instance the config.py file does that for us. The entry point to the application is the python file manage.py that runs the flask application.<br/>
 ##Installation
 To get the application up and running on your environment. Follow the procedure.<br/>
-```
+
 1.git clone the repository.
 ```
 https://github.com/angieMutava/MainTracker
@@ -44,6 +44,7 @@ pip -r requirements.txt
 ```
 python manage.py runserver
 ```
+
 You can download sqlite browser in order to be able to view the tables in the model class inside the model.py.
 Open databases and navigate to the root folder and open tracker.sqlite
 <br/>
