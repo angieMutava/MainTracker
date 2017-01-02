@@ -1,4 +1,5 @@
 # Mantenimiento
+[![Build Passing](https://travis-ci.org/{angieMutava}/{MainTracker}.png?branch=master)](https://travis-ci.org/{angieMutava}/{MainTracker})
 This is a web application that allows reporting of maintainance and repair requests, to track the maintenance process and escalate unusual delays.
 
   |Mantenimiento is a spanish word that means maintainance.
@@ -49,7 +50,7 @@ python manage.py db upgrade
 ```
 python manage.py runserver
 ```
-###Screenshots
+###Screenshots for the key pages
 ######home page
 ![alt](https://github.com/angieMutava/MainTracker/blob/master/screenshots/home.PNG "home")
 ######index page
