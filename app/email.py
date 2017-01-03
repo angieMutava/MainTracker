@@ -1,5 +1,4 @@
 from flask.ext.mail import Message
-from hello import mail
 from app import mail, create_app
 from flask import render_template
 from config import ADMINS
@@ -14,3 +13,10 @@ def send_async_email(app, msg):
 		mail.send(msg)
 
 
+def send_email(subject, sender, recipients, body, html, **kwargs):
+	msg = Message(subject, sender=sender, recipients=recipients)
+	msg.body = body
+	msg.html = html
+	thr = Thread(target=send_async_email, args=[app, msg])
+	thr.start()
+	return thr

@@ -16,6 +16,7 @@ class User(UserMixin, db.Model):
 	username = db.Column(db.String(64), unique=True, index=True)
 	password_hash = db.Column(db.String(128))
 	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+	confirm = db.Column(db.Boolean, default=False)
 	#repair = db.relationship('Repair', backref='raised_by', lazy='immediate')
 	#main = db.relationship('Maintanance', backref='raised_by', lazy='immediate')
 
