@@ -14,7 +14,7 @@ def signIn():
 		if user is not None and user.verify_password(user_form.password.data):
 			login_user(user, user_form.remember_me.data)
 			return redirect(request.args.get('next') or url_for('main.index'))
-		flash("invalid username or password")
+		flash("Invalid username or password")
 	return render_template('auth/login.html', user_form=user_form)
 
 @auth.route('/sign_up', methods=['GET', 'POST'])
@@ -26,7 +26,8 @@ def signUp():
 			email=user_form.email.data,
 			phone_number=user_form.phone_number.data,
 			username=user_form.username.data,
-			password=user_form.password.data)
+			password=user_form.password.data,
+			role_id=1)
 		db.session.add(user)
 		db.session.commit()
 		flash("user registered successfully")

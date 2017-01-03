@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
 	phone_number = db.Column(db.String(64))
 	username = db.Column(db.String(64), unique=True, index=True)
 	password_hash = db.Column(db.String(128))
+	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 	#repair = db.relationship('Repair', backref='raised_by', lazy='immediate')
 	#main = db.relationship('Maintanance', backref='raised_by', lazy='immediate')
 
@@ -68,3 +69,19 @@ class Repair(db.Model):
 	item_type = db.Column(db.String(64))
 	urgency = db.Column(db.String(64))
 	raised_by = db.Column(db.String(64))
+
+class Role(db.Model):
+	__tablename__ = 'roles'
+	id = db.Column(db.Integer(), primary_key=True)
+	name = db.Column(db.String(80), unique=True)
+	description = db.Column(db.String(255))
+	users = db.relationship('User', backref='role', lazy='dynamic')
+
+	# __unicode__ is required by Flask-Admin, so we can have human-readable values for the Role when editing a User.
+	# If we were using Python 3.0, this would be __str__ instead.
+	def __unicode__(self):
+		return self.name
+
+	# __hash__ is required to avoid the exception TypeError: unhashable type: 'Role' when saving a User
+	def __hash__(self):
+		return hash(self.name)

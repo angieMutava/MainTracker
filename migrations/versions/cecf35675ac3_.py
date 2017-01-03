@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e34248018ce0
+Revision ID: cecf35675ac3
 Revises: 
-Create Date: 2017-01-02 03:41:41.735000
+Create Date: 2017-01-03 02:53:14.915000
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e34248018ce0'
+revision = 'cecf35675ac3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,6 +36,13 @@ def upgrade():
     sa.Column('raised_by', sa.String(length=64), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('roles',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=80), nullable=True),
+    sa.Column('description', sa.String(length=255), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
+    )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=64), nullable=True),
@@ -44,6 +51,8 @@ def upgrade():
     sa.Column('phone_number', sa.String(length=64), nullable=True),
     sa.Column('username', sa.String(length=64), nullable=True),
     sa.Column('password_hash', sa.String(length=128), nullable=True),
+    sa.Column('role_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
@@ -56,6 +65,7 @@ def downgrade():
     op.drop_index(op.f('ix_users_username'), table_name='users')
     op.drop_index(op.f('ix_users_email'), table_name='users')
     op.drop_table('users')
+    op.drop_table('roles')
     op.drop_table('repairs')
     op.drop_table('mains')
     # ### end Alembic commands ###

@@ -5,6 +5,7 @@ from ..model import User, Repair, Maintanance
 from flask.ext.login import logout_user, current_user, login_required
 from flask import render_template, redirect, url_for, request, flash, session
 from .form import RepairForm, MaintananceForm
+from .decorators import required_roles
 
 
 @main.route('/')
@@ -56,23 +57,31 @@ def maintanance():
 
 
 @main.route('/admin_home', methods=['GET', 'POST'])
+@required_roles(2)
+@login_required
 def admin_home():
 	return render_template('admin/admin_home.html')
 
 
 @main.route('/admin_mains', methods=['GET', 'POST'])
+@required_roles(2)
+@login_required
 def admin_mains():
 	maintanances = Maintanance.query.all()
 	return render_template('admin/maintanance.html', maintanances=maintanances)
 
 
 @main.route('/admin_repairs', methods=['GET', 'POST'])
+@required_roles(2)
+@login_required
 def admin_repairs():
 	repairs = Repair.query.all()
 	return render_template('admin/repairs.html', repairs=repairs)
 
 
 @main.route('/admin_users', methods=['GET', 'POST'])
+@required_roles(2)
+@login_required
 def admin_users():
 	users = User.query.all()
 	return render_template('admin/users.html', users=users)

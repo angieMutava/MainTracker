@@ -48,12 +48,6 @@ python manage.py runserver
 You can download sqlite browser in order to be able to view the tables in the model class inside the model.py.
 Open databases and navigate to the root folder and open tracker.sqlite
 <br/>
-
-
-
-
-
-
 ##Requirements
 ######language
 python 2.7 or python 3.0 should be installed in your machine.
