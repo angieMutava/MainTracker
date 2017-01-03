@@ -35,9 +35,9 @@ def signUp():
 			role_id=1)
 		db.session.add(user)
 		db.session.commit()
-		token = user.generate_confirmation_token()
-		send_email(user.email, 'Confirm Your Account', 'auth/email/confirm', user=user, token=token)
-		flash('A confirmation email has been sent to you by email.')
+		#token = user.generate_confirmation_token()
+		#send_email(user.email, 'Confirm Your Account', 'auth/email/confirm', user=user, token=token)
+		#flash('A confirmation email has been sent to your email.')
 		return redirect(url_for('auth.signIn'))
 	return render_template('auth/signup.html', user_form=user_form)
 	
@@ -52,7 +52,7 @@ def sign_out():
 def reset_password():
 	if not current_user.is_anonymous:
 		return redirect(url_for('main.index'))
-	user_form = ResetPassword()
+	user_form = PasswordResetForm()
 	if user_form.validate_on_submit():
 		user = User.query.filter_by(email=user_form.email.data).first()
 		if user:
@@ -113,6 +113,7 @@ def resend_confirmation():
 
 @auth.before_app_request
 def before_request():
-	if current_user.is_authenticated() and not current_user.confirmed and request.endpoint[:5] != 'auth.':
-		return redirect(url_for('auth.unconfirmed'))
+	pass
+	#if current_user.is_authenticated() and not current_user.confirmed and request.endpoint[:5] != 'auth.':
+		#return redirect(url_for('auth.unconfirmed'))
 	
