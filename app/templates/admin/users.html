@@ -6,6 +6,7 @@
 <a href="{{ url_for('main.admin_mains') }}" class = "btn btn-primary">View All Maintanance Requests</a>
 <a href="{{ url_for('main.admin_repairs') }}" class = "btn btn-primary">View All Repair Requests</a>
 <a href="{{ url_for('main.admin_users') }}" class = "btn btn-primary">View All Users</a>
+<a href="{{ url_for('main.admin_users') }}" class = "btn btn-primary">Assign Requests</a>
 
 </nav>
 {% endblock %}
@@ -29,9 +30,10 @@
          <th>Email</th>
          <th>PhoneNumber</th>
          <th>UserName</th>
+         <th>Role Id</th>
          <th></th>
          <th></th>
-         <th></th>
+         
       </tr>
    </thead>
    {% for users in users%}
@@ -45,9 +47,10 @@
          <td>{{ users.email }}</td>
          <td>{{ users.phone_number }}</td>
          <td>{{ users.username }}</td>
+         <td>{{ users.role_id }}</td>
          <td><a href="#" class = "btn btn-primary"> Edit</a</td>
          <td><a href="#" class = "btn btn-primary"> Delete</a></td>
-         <td><a href="#" class = "btn btn-primary"> Assign Request</a></td>
+         
          
       </tr>
  </tbody>

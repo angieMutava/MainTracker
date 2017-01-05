@@ -60,7 +60,9 @@ def maintanance():
 @required_roles(2)
 @login_required
 def admin_home():
-	return render_template('admin/admin_home.html')
+	maintanances = (Maintanance.query.filter_by(urgency='high').all())
+	repairs = (Repair.query.filter_by(urgency='high').all())
+	return render_template('admin/admin_home.html', maintanances=maintanances, repairs=repairs)
 
 
 @main.route('/admin_mains', methods=['GET', 'POST'])
