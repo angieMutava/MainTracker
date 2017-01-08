@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% import 'bootstrap/wtf.html' as wtf %}
-
 {% block styles %}  
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="static/css/normalize.css">
@@ -10,20 +9,23 @@
 
 
 {% endblock %}
-
 {% block navbar %}
 <nav>
-<a href="#" class = "btn btn-primary"> Repair</a>
+<a href="{{ url_for('main.admin_mains') }}" class = "btn btn-primary">View All Maintanance Requests</a>
+<a href="{{ url_for('main.admin_repairs') }}" class = "btn btn-primary">View All Repair Requests</a>
+<a href="{{ url_for('main.admin_users') }}" class = "btn btn-primary">View All Users</a>
+<a href="{{ url_for('main.assign') }}" class = "btn btn-primary">Assign Requests</a>
+
 </nav>
 {% endblock %}
 
 {% block page_content %}
-    <div class="container">
+<div class="container">
     <div class="row">
          <div class="col-md-8">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">Repair Form</h3>
+            <h3 class="panel-title">Approve/Reject request </h3>
           </div>
           <div class="panel-body">
         
@@ -66,5 +68,8 @@
         
     </div>
 </div>
+
+      
+
 
 {% endblock %}

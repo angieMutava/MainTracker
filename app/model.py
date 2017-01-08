@@ -86,3 +86,13 @@ class Role(db.Model):
 	# __hash__ is required to avoid the exception TypeError: unhashable type: 'Role' when saving a User
 	def __hash__(self):
 		return hash(self.name)
+
+
+class Assigned(db.Model):
+	__tablename__ = 'assigns'
+	id = db.Column(db.Integer, primary_key=True)
+	first_name = db.Column(db.String(64))
+	last_name = db.Column(db.String(64))
+	phone_number = db.Column(db.String(64))
+	department = db.Column(db.String(64))
+	issue = db.Column(db.String(64))

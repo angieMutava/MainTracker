@@ -1,5 +1,5 @@
 # Mantenimiento
-[![Build Status](https://travis-ci.org/angieMutava/MainTracker.png?branch=master)](https://github.com/angieMutava/MainTracker)
+[![Build Status](https://travis-ci.org/angieMutava/MainTracker.png?branch=master)](https://travis-ci.org/angieMutava/MainTracker})
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 <br/>
 This is a web application that allows reporting of maintainance and repair requests, to track the maintenance process and escalate unusual delays.

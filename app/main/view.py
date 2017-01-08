@@ -1,10 +1,10 @@
 from . import main
 from flask import render_template
 from .. import db
-from ..model import User, Repair, Maintanance
+from ..model import User, Repair, Maintanance, Assigned
 from flask.ext.login import logout_user, current_user, login_required
 from flask import render_template, redirect, url_for, request, flash, session
-from .form import RepairForm, MaintananceForm
+from .form import RepairForm, MaintananceForm, AssignForm
 from .decorators import required_roles
 
 
@@ -87,3 +87,28 @@ def admin_repairs():
 def admin_users():
 	users = User.query.all()
 	return render_template('admin/users.html', users=users)
+
+
+@main.route('/approve', methods=['GET', 'POST'])
+@required_roles(2)
+def approve():
+	return render_template('admin/approvereject.html')
+
+
+@main.route('/assign', methods=['GET', 'POST'])
+@required_roles(2)
+def assign():
+	assign_form = AssignForm()
+	if assign_form.validate_on_submit():
+		assigned = Assigned(first_name=assign_form.first_name.data,
+			last_name=assign_form.last_name.data,
+			phone_number=assign_form.phone_number.data,
+			issue=assign_form.issue.data,
+			department=assign_form.department.data)
+		db.session.add(assigned)
+		db.session.commit()
+		#token = user.generate_confirmation_token()
+		#send_email(user.email, 'Confirm Your Account', 'auth/email/confirm', user=user, token=token)
+		#flash('A confirmation email has been sent to your email.')
+		return redirect(url_for('main.admin_home'))
+	return render_template('admin/assign.html', assign_form=assign_form)
