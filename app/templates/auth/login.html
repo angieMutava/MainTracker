@@ -1,0 +1,50 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title> Sign In</title>
+  <meta name="description" content="">
+  <meta name="author" content="Padmanaban, Mine Web Design">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="static/css/normalize.css">
+  <link rel="stylesheet" href="static/css/style.css">
+
+</head>
+{% block body %}
+<div class="row">
+  <div class="container">
+    <!--<h2 class="title">Sign In</h2>-->
+    <br/>
+    <br/>
+    <form class="form-signin" role = "form" method ="POST" action = "{{ url_for('auth.signIn') }}">
+      <!--<h4 class="section-heading"><span>SIGN IN</span></h4>-->
+      {{ user_form.hidden_tag() }}
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.username) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.password) }}
+        </div>
+      </div>
+      <br/>
+      <div class="button-submit">
+      {{ wtf.form_field(user_form.submit) }}
+      </div>
+      <div class="row">
+        <a href="{{ url_for('auth.reset_password') }}" class="forgot">Forgot your password?</a>
+      </div>
+      <div class="row">
+        <a href="{{ url_for('auth.signUp') }}" class="forgot">New User.Click to sign up?</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+</html>

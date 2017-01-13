@@ -1,0 +1,76 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "extras/alerts.html" as macros %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Sign Up</title>
+  <meta name="description" content="">
+  <meta name="author" content="Padmanaban, Mine Web Design">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="static/css/normalize.css">
+  <link rel="stylesheet" href="static/css/style.css">
+
+</head>
+ {% block body %}
+
+
+   <div class="col-sm-10 col-sm-offset-1">
+        {{ macros.render_alert('alert-danger') }}
+  </div>
+<div class="row">
+  <div class="container">
+    <!--<h2 class="title">RESPONSIVE LOGIN TEMPLATE</h2>-->
+    <form class="form-signin" role="form" method ="POST" action="{{ url_for('auth.signUp') }}">
+      <!--<h4 class="section-heading"><span>SIGN UP</span></h4>-->
+      {{ user_form.hidden_tag() }}
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.first_name) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.last_name) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.email) }}
+        </div>
+      </div>
+       <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.phone_number) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.username) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.password) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          {{ wtf.form_field(user_form.conf_password) }}
+        </div>
+      </div>
+      <br/>
+      <div class="button-submit">
+      {{ wtf.form_field(user_form.submit) }}
+      </div>
+      <div class="row">
+        <a href="{{ url_for('auth.signIn') }}" class="forgot">Already Signed up?Sign In</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+</html>

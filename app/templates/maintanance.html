@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}  
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="static/css/normalize.css">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+{% endblock %}
+{% block navbar %}
+<nav>
+<a href="#" class = "btn btn-primary"> Maintanance</a>
+</nav>
+{% endblock %}
+
+{% block page_content %}
+	<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Maintanance Form</h3>
+          </div>
+          <div class="panel-body">
+    	
+        <form role="form" method="POST" action="{{ url_for('main.maintanance') }}" class="form col-md-5">
+            {{ main_form.hidden_tag() }}
+            <div class="row">
+                 <div class="column">
+                    
+                    
+                        {{ wtf.form_field(main_form.item_name) }}
+                        
+                    </div>
+                </div>
+                <div class="row">
+                 <div class="column">
+                        {{ wtf.form_field(main_form.item_issue) }}
+                        
+                    </div>
+                </div>
+                <div class="row">
+                 <div class="column">
+                        {{ wtf.form_field(main_form.item_type) }}
+                       
+                    </div>
+                </div>
+                <div class="row">
+                 <div class="column">
+                        {{ wtf.form_field(main_form.urgency) }}
+                        
+                    </div>
+                </div>
+                {{ wtf.form_field(main_form.submit ) }}
+               
+            </div>
+        </form>
+   
+        
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
