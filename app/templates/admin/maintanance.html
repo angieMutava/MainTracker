@@ -34,9 +34,9 @@
          
       </tr>
    </thead>
-   {% for maintanances in maintanances%}
+   
    <tbody>
-      
+     {% for maintanances in maintanances%} 
       <tr>
        
          <td>{{ maintanances.item_name }}</td>
@@ -47,10 +47,10 @@
          <td>{{ maintanances.raised_by }}</td>
          <td><a href="#" class = "btn btn-primary"> Approve/Reject</a</td>
          
-         
       </tr>
+      {% endfor %}
  </tbody>
-   {% endfor %}
+   
 </table>
 </div>
 </div>

@@ -1,10 +1,11 @@
+from .form import ChangePasswordForm, PasswordResetRequest, ChangeEmailForm, PasswordResetForm,SignInForm, SignUpForm
+from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask import render_template, redirect, url_for, request, flash, session
 from . import auth
 from .. import db
 from..email import send_email
 from ..model import User
-from .form import SignInForm, SignUpForm, PasswordResetForm, ChangePasswordForm, PasswordResetRequest, ChangeEmailForm
-from flask.ext.login import login_user, logout_user, current_user, login_required
-from flask import render_template, redirect, url_for, request, flash, session
+
 
 
 @auth.route('/sign_in', methods=['GET', 'POST'])
@@ -50,8 +51,6 @@ def sign_out():
 
 @auth.route('/reset', methods=['GET', 'POST'])
 def reset_password():
-	if not current_user.is_anonymous:
-		return redirect(url_for('main.index'))
 	user_form = PasswordResetForm()
 	if user_form.validate_on_submit():
 		user = User.query.filter_by(email=user_form.email.data).first()

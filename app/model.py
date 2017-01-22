@@ -94,5 +94,6 @@ class Assigned(db.Model):
 	first_name = db.Column(db.String(64))
 	last_name = db.Column(db.String(64))
 	phone_number = db.Column(db.String(64))
-	department = db.Column(db.String(64))
 	issue = db.Column(db.String(64))
+	department = db.Column(db.String(64))
+	

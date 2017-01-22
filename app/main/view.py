@@ -1,15 +1,15 @@
 from . import main
 from flask import render_template
 from .. import db
-from ..model import User, Repair, Maintanance, Assigned
+from ..model import Assigned, Maintanance, Repair, User  
 from flask.ext.login import logout_user, current_user, login_required
 from flask import render_template, redirect, url_for, request, flash, session
-from .form import RepairForm, MaintananceForm, AssignForm
+from .form import RepairForm, MaintananceForm, AssignForm, adminEditForm
 from .decorators import required_roles
 
 
 @main.route('/')
-@main.route('/home', methods=['GET', 'POST'])
+@main.route('/home')
 def home_page():
 	return render_template('home.html')
 
@@ -57,8 +57,8 @@ def maintanance():
 
 
 @main.route('/admin_home', methods=['GET', 'POST'])
-@required_roles(2)
 @login_required
+@required_roles(2)
 def admin_home():
 	maintanances = (Maintanance.query.filter_by(urgency='high').all())
 	repairs = (Repair.query.filter_by(urgency='high').all())
@@ -66,36 +66,62 @@ def admin_home():
 
 
 @main.route('/admin_mains', methods=['GET', 'POST'])
-@required_roles(2)
 @login_required
+@required_roles(2)
 def admin_mains():
 	maintanances = Maintanance.query.all()
 	return render_template('admin/maintanance.html', maintanances=maintanances)
 
 
 @main.route('/admin_repairs', methods=['GET', 'POST'])
-@required_roles(2)
 @login_required
+@required_roles(2)
 def admin_repairs():
 	repairs = Repair.query.all()
 	return render_template('admin/repairs.html', repairs=repairs)
 
 
 @main.route('/admin_users', methods=['GET', 'POST'])
-@required_roles(2)
 @login_required
+@required_roles(2)
 def admin_users():
 	users = User.query.all()
 	return render_template('admin/users.html', users=users)
 
 
+@main.route('/edit_users/<username>', methods=['GET', 'POST'])
+@login_required
+@required_roles(2)
+def edit_users(username):
+	user = User.query.filter_by(username=username).first()
+	form = adminEditForm(user=user)
+	if form.validate_on_submit():
+		try:
+			user.email = form.email.data
+			user.first_name = form.first_name.data
+			user.last_name = form.last_name.data
+			user.phone_number = form.phone_number.data
+			user.username = form.username.data
+			db.session.add(user)
+			db.session.commit()
+			flash("The profile has been updated.")
+			return redirect(url_for('main.admin_home'))
+		except Exception, e:
+			db.session.rollback()
+			flash("An error occurred while updating user information")
+			return redirect(url_for('main.edit_users', username=user.username))
+	return render_template('admin/edit_user.html', form=form, user=user)
+		
+
 @main.route('/approve', methods=['GET', 'POST'])
+@login_required
 @required_roles(2)
 def approve():
 	return render_template('admin/approvereject.html')
 
 
 @main.route('/assign', methods=['GET', 'POST'])
+@login_required
 @required_roles(2)
 def assign():
 	assign_form = AssignForm()

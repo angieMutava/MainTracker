@@ -36,9 +36,9 @@
          
       </tr>
    </thead>
-   {% for users in users%}
+ 
    <tbody>
-      
+       {% for users in users%} 
       <tr>
        
          <td>{{ users.first_name }}</td>
@@ -48,13 +48,14 @@
          <td>{{ users.phone_number }}</td>
          <td>{{ users.username }}</td>
          <td>{{ users.role_id }}</td>
-         <td><a href="#" class = "btn btn-primary"> Edit</a</td>
+         <td><a href="{{ url_for('main.edit_users', username=users.username) }}" class = "btn btn-primary"> Edit</a</td>
          <td><a href="#" class = "btn btn-primary"> Delete</a></td>
          
          
       </tr>
+      {% endfor %}
  </tbody>
-   {% endfor %}
+   
 </table>
 </div>
 </div>
